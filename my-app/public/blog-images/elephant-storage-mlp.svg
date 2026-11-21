@@ -1,0 +1,163 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 326" width="880" height="326" role="img" aria-labelledby="title desc">
+  <title id="title">Elephant Storage Black-Box Neural Network Sketch</title>
+  <desc id="desc">Hand-drawn style coded SVG diagram showing a Frame ID going into an overfit neural network black box with hidden layers and outputting an RGB x 3 matrix that forms a generated video frame.</desc>
+
+  <defs>
+    <!-- Subtle hand-drawn wobble filter applied to shapes/lines (not text) -->
+    <filter id="sketch" x="-5%" y="-5%" width="110%" height="110%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="2" seed="7" result="noise"/>
+      <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.2" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+
+    <style>
+      .hand {
+        font-family: "Chalkboard SE", "Comic Sans MS", "Segoe Print", "Bradley Hand", cursive, sans-serif;
+        fill: #1e293b;
+      }
+      .heading { font-size: 20px; font-weight: 700; text-anchor: middle; }
+      .sub { font-size: 14.5px; fill: #475569; text-anchor: middle; }
+      .box-title { font-size: 18px; font-weight: 700; text-anchor: middle; }
+      .label { font-size: 15.5px; font-weight: 700; text-anchor: middle; }
+      .rgb-letter { font-size: 20px; font-weight: 700; text-anchor: middle; fill: #0f172a; }
+    </style>
+  </defs>
+
+  <!-- Paper-white background card -->
+  <rect x="3" y="3" width="874" height="320" rx="14" fill="#fdfcf8" stroke="#cbd5e1" stroke-width="2" filter="url(#sketch)"/>
+
+  <!-- ==================== 1. INPUT ==================== -->
+  <text x="105" y="54" class="hand heading">Input</text>
+
+  <g filter="url(#sketch)">
+    <rect x="36" y="126" width="138" height="80" rx="12" fill="#e0f2fe" stroke="#1e293b" stroke-width="2.5"/>
+  </g>
+  <text x="105" y="160" class="hand box-title">Frame ID</text>
+  <text x="105" y="186" class="hand sub">(e.g. #42)</text>
+
+  <!-- Arrow 1: Input -> Neural Net -->
+  <g filter="url(#sketch)" stroke="#1e293b" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M 184 166 Q 204 164 222 166"/>
+    <path d="M 213 158 L 224 166 L 213 174"/>
+  </g>
+
+  <!-- ==================== 2. BLACK BOX MLP ==================== -->
+  <text x="380" y="42" class="hand heading">Overfit Neural Network</text>
+  <text x="380" y="64" class="hand sub">(the black box)</text>
+
+  <g filter="url(#sketch)">
+    <rect x="238" y="82" width="284" height="214" rx="16" fill="#f1f5f9" stroke="#1e293b" stroke-width="2.5" stroke-dasharray="9 6"/>
+
+    <!-- Connections: Col 1 (3) -> Col 2 (4) -->
+    <g stroke="#334155" stroke-width="1.4" opacity="0.72">
+      <line x1="286" y1="130" x2="380" y2="112"/>
+      <line x1="286" y1="130" x2="380" y2="152"/>
+      <line x1="286" y1="130" x2="380" y2="192"/>
+      <line x1="286" y1="130" x2="380" y2="232"/>
+
+      <line x1="286" y1="172" x2="380" y2="112"/>
+      <line x1="286" y1="172" x2="380" y2="152"/>
+      <line x1="286" y1="172" x2="380" y2="192"/>
+      <line x1="286" y1="172" x2="380" y2="232"/>
+
+      <line x1="286" y1="214" x2="380" y2="112"/>
+      <line x1="286" y1="214" x2="380" y2="152"/>
+      <line x1="286" y1="214" x2="380" y2="192"/>
+      <line x1="286" y1="214" x2="380" y2="232"/>
+
+      <!-- Connections: Col 2 (4) -> Col 3 (5) -->
+      <line x1="380" y1="112" x2="474" y2="104"/>
+      <line x1="380" y1="112" x2="474" y2="138"/>
+      <line x1="380" y1="112" x2="474" y2="172"/>
+      <line x1="380" y1="112" x2="474" y2="206"/>
+      <line x1="380" y1="112" x2="474" y2="240"/>
+
+      <line x1="380" y1="152" x2="474" y2="104"/>
+      <line x1="380" y1="152" x2="474" y2="138"/>
+      <line x1="380" y1="152" x2="474" y2="172"/>
+      <line x1="380" y1="152" x2="474" y2="206"/>
+      <line x1="380" y1="152" x2="474" y2="240"/>
+
+      <line x1="380" y1="192" x2="474" y2="104"/>
+      <line x1="380" y1="192" x2="474" y2="138"/>
+      <line x1="380" y1="192" x2="474" y2="172"/>
+      <line x1="380" y1="192" x2="474" y2="206"/>
+      <line x1="380" y1="192" x2="474" y2="240"/>
+
+      <line x1="380" y1="232" x2="474" y2="104"/>
+      <line x1="380" y1="232" x2="474" y2="138"/>
+      <line x1="380" y1="232" x2="474" y2="172"/>
+      <line x1="380" y1="232" x2="474" y2="206"/>
+      <line x1="380" y1="232" x2="474" y2="240"/>
+    </g>
+
+    <!-- Nodes: Col 1 -->
+    <g fill="#ffffff" stroke="#1e293b" stroke-width="2.3">
+      <circle cx="286" cy="130" r="11"/>
+      <circle cx="286" cy="172" r="11"/>
+      <circle cx="286" cy="214" r="11"/>
+
+      <!-- Nodes: Col 2 -->
+      <circle cx="380" cy="112" r="11"/>
+      <circle cx="380" cy="152" r="11"/>
+      <circle cx="380" cy="192" r="11"/>
+      <circle cx="380" cy="232" r="11"/>
+
+      <!-- Nodes: Col 3 -->
+      <circle cx="474" cy="104" r="11"/>
+      <circle cx="474" cy="138" r="11"/>
+      <circle cx="474" cy="172" r="11"/>
+      <circle cx="474" cy="206" r="11"/>
+      <circle cx="474" cy="240" r="11"/>
+    </g>
+  </g>
+  <text x="380" y="281" class="hand label">Hidden Layers</text>
+
+  <!-- Arrow 2: Neural Net -> Output -->
+  <g filter="url(#sketch)" stroke="#1e293b" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M 532 166 Q 552 168 572 166"/>
+    <path d="M 563 158 L 574 166 L 563 174"/>
+  </g>
+
+  <!-- ==================== 3. OUTPUT ==================== -->
+  <text x="716" y="54" class="hand heading">Output</text>
+
+  <!-- Stacked RGB x 3 Matrices -->
+  <g filter="url(#sketch)">
+    <!-- Blue channel (back) -->
+    <rect x="622" y="102" width="84" height="84" rx="4" fill="#bfdbfe" stroke="#1e293b" stroke-width="2.2"/>
+    <path d="M 650 102 V 186 M 678 102 V 186 M 622 130 H 706 M 622 158 H 706" stroke="#1e293b" stroke-width="1.2" opacity="0.6"/>
+
+    <!-- Green channel (middle) -->
+    <rect x="604" y="118" width="84" height="84" rx="4" fill="#bbf7d0" stroke="#1e293b" stroke-width="2.2"/>
+    <path d="M 632 118 V 202 M 660 118 V 202 M 604 146 H 688 M 604 174 H 688" stroke="#1e293b" stroke-width="1.2" opacity="0.6"/>
+
+    <!-- Red channel (front) -->
+    <rect x="586" y="134" width="84" height="84" rx="4" fill="#fecaca" stroke="#1e293b" stroke-width="2.2"/>
+    <path d="M 614 134 V 218 M 642 134 V 218 M 586 162 H 670 M 586 190 H 670" stroke="#1e293b" stroke-width="1.2" opacity="0.6"/>
+  </g>
+  <text x="694" y="124" class="hand rgb-letter" style="font-size:16px;">B</text>
+  <text x="677" y="156" class="hand rgb-letter" style="font-size:16px;">G</text>
+  <text x="628" y="184" class="hand rgb-letter">R</text>
+
+  <text x="646" y="250" class="hand label">RGB × 3 Matrix</text>
+  <text x="646" y="272" class="hand sub">(256 × 256)</text>
+
+  <!-- Arrow 3: RGB Matrix -> Generated Frame -->
+  <g filter="url(#sketch)" stroke="#1e293b" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none">
+    <path d="M 716 166 Q 730 165 744 166"/>
+    <path d="M 737 160 L 746 166 L 737 172"/>
+  </g>
+
+  <!-- Generated Frame doodle -->
+  <g filter="url(#sketch)">
+    <rect x="756" y="124" width="86" height="86" rx="6" fill="#ffffff" stroke="#1e293b" stroke-width="2.5"/>
+    <rect x="765" y="133" width="68" height="68" rx="3" fill="#fef9c3" stroke="#1e293b" stroke-width="1.6"/>
+    <!-- Little doodle smiley -->
+    <circle cx="799" cy="167" r="22" fill="#fde047" stroke="#1e293b" stroke-width="2.2"/>
+    <circle cx="792" cy="162" r="2.6" fill="#1e293b"/>
+    <circle cx="806" cy="162" r="2.6" fill="#1e293b"/>
+    <path d="M 790 172 Q 799 181 808 172" fill="none" stroke="#1e293b" stroke-width="2.2" stroke-linecap="round"/>
+  </g>
+  <text x="799" y="242" class="hand label">Generated</text>
+  <text x="799" y="263" class="hand label">Frame!</text>
+</svg>
