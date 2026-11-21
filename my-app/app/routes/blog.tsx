@@ -4,8 +4,8 @@ import { getAllBlogPosts } from "../utils/blog";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Blog - Gery Fabrega" },
-    { name: "description", content: "Blog posts by Gery Fabrega" },
+    { title: "Writing — Gery Fabrega" },
+    { name: "description", content: "Essays, notes, and projects by Gery Fabrega" },
   ];
 }
 
@@ -17,68 +17,49 @@ export function clientLoader() {
 export default function Blog({ loaderData }: Route.ComponentProps) {
   const { posts } = loaderData;
 
-  // Client-side logging for debugging
-  if (typeof window !== "undefined") {
-    console.log("Blog page - All posts loaded:", posts);
-  }
-
   return (
-    <main className="min-h-screen bg-white dark:bg-gray-950">
-      <div className="container mx-auto px-4 py-16 max-w-4xl">
-        {/* Header */}
-        <header className="mb-12">
-          <Link
-            to="/"
-            className="inline-block text-blue-600 dark:text-blue-400 hover:underline mb-4"
-          >
-            ← Back to Home
-          </Link>
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
-            Blog Posts
-          </h1>
-          <p className="text-gray-600 dark:text-gray-400 mt-2">
-            All my articles and thoughts on software engineering/Computer Science
-          </p>
-        </header>
+    <main className="mx-auto max-w-3xl px-6 py-14 sm:py-20">
+      <header className="pb-10 border-b border-[#DCDCD7] mb-10">
+        <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-[#73736E] mb-3">
+          Archive
+        </p>
+        <h1 className="font-serif text-4xl font-medium tracking-tight text-[#141413] mb-3">
+          Writing
+        </h1>
+        <p className="text-[#52524E] text-[0.98rem]">
+          Notes on systems programming, graphics, and weekend AI/ML experiments.
+        </p>
+      </header>
 
-        {/* Blog Posts List */}
-        <div className="space-y-6">
-          {posts.length === 0 ? (
-            <p className="text-gray-500 dark:text-gray-400">
-              No blog posts yet. Check back soon!
-            </p>
-          ) : (
-            posts.map((post) => (
-              <article
-                key={post.slug}
-                className="border border-gray-200 dark:border-gray-800 rounded-lg p-6 hover:shadow-lg transition-shadow"
-              >
-                <Link to={`/blog/${post.slug}`}>
-                  <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-2 hover:text-blue-600 dark:hover:text-blue-400">
+      {posts.length === 0 ? (
+        <p className="text-sm text-[#73736E]">
+          No blog posts yet. Check back soon.
+        </p>
+      ) : (
+        <div className="divide-y divide-[#DCDCD7]">
+          {posts.map((post) => (
+            <article key={post.slug} className="py-6 first:pt-0">
+              <Link to={`/blog/${post.slug}`} className="group block">
+                <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-2">
+                  <h2 className="font-serif text-2xl font-medium text-[#141413] group-hover:underline underline-offset-4 decoration-[#9E9E97]">
                     {post.title}
                   </h2>
-                </Link>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
-                  {new Date(post.date).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </p>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
+                  <time className="font-mono text-xs text-[#73736E] shrink-0">
+                    {new Date(post.date).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </time>
+                </div>
+                <p className="text-sm text-[#52524E] leading-relaxed">
                   {post.excerpt}
                 </p>
-                <Link
-                  to={`/blog/${post.slug}`}
-                  className="inline-block text-blue-600 dark:text-blue-400 hover:underline"
-                >
-                  Read more →
-                </Link>
-              </article>
-            ))
-          )}
+              </Link>
+            </article>
+          ))}
         </div>
-      </div>
+      )}
     </main>
   );
 }

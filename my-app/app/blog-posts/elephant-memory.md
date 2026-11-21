@@ -6,7 +6,7 @@ excerpt: "Intentionally overfitting a PyTorch neural network to memorize video f
 
 # Why Overtrain a Neural Network?
 
-In ML you normally spend most of your time trying to avoid overfitting. For this project I wanted to do the opposite. The idea behind **Elephant Storage** (I name I am giving this concept) is simple: take a video, break it into individual frames, and intentionally overtrain an Artificial Neural Network (ANN) until it memorizes every frame.
+In ML you normally spend most of your time trying to avoid overfitting. For this project I wanted to do the opposite. The idea behind **Elephant Storage** (The name I am giving this concept) is simple: take a video, break it into individual frames, and intentionally overtrain an Artificial Neural Network (ANN) until it memorizes every frame.
 
 Once the network is trained, you pass in a frame number (a numerical key) and it outputs the RGB pixels for that frame. Do that for every key in sequence, stitch the images back together, and you get the video back without needing the original MP4 file. The entire clip lives inside the model weights.
 

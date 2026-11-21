@@ -6,6 +6,7 @@ import {
   Scripts,
   ScrollRestoration,
   Link,
+  useLocation,
 } from "react-router";
 
 import type { Route } from "./+types/root";
@@ -20,7 +21,7 @@ export const links: Route.LinksFunction = () => [
   },
   {
     rel: "stylesheet",
-    href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
+    href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap",
   },
 ];
 
@@ -33,7 +34,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Meta />
         <Links />
       </head>
-      <body>
+      <body className="bg-[#F5F5F3] text-[#141413] antialiased selection:bg-[#141413] selection:text-[#F5F5F3]">
         {children}
         <ScrollRestoration />
         <Scripts />
@@ -43,35 +44,74 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  const location = useLocation();
+  const isBlog = location.pathname.startsWith("/blog");
+
   return (
-    <div className="min-h-screen">
-      <nav className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950">
-        <div className="container mx-auto px-4 py-4 max-w-4xl">
-          <div className="flex items-center justify-between">
+    <div className="min-h-screen flex flex-col bg-[#F5F5F3] text-[#141413]">
+      <header className="border-b border-[#DCDCD7]">
+        <div className="mx-auto max-w-3xl px-6 py-5 flex items-center justify-between">
+          <Link
+            to="/"
+            className="font-serif text-xl font-medium tracking-tight text-[#141413] hover:opacity-70 transition-opacity"
+          >
+            Gery Fabrega
+          </Link>
+          <nav className="flex items-center gap-7 text-sm">
             <Link
               to="/"
-              className="text-xl font-bold text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400"
+              className={`transition-colors ${
+                !isBlog
+                  ? "text-[#141413] font-medium"
+                  : "text-[#6B6B66] hover:text-[#141413]"
+              }`}
             >
-              Gery Fabrega
+              About
             </Link>
-            <div className="flex gap-6">
-              <Link
-                to="/"
-                className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
-              >
-                Home
-              </Link>
-              <Link
-                to="/blog"
-                className="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white"
-              >
-                Blog
-              </Link>
-            </div>
+            <Link
+              to="/blog"
+              className={`transition-colors ${
+                isBlog
+                  ? "text-[#141413] font-medium"
+                  : "text-[#6B6B66] hover:text-[#141413]"
+              }`}
+            >
+              Writing
+            </Link>
+            <a
+              href="https://github.com/geryfabrega"
+              target="_blank"
+              rel="noreferrer"
+              className="text-[#6B6B66] hover:text-[#141413] transition-colors"
+            >
+              GitHub
+            </a>
+          </nav>
+        </div>
+      </header>
+
+      <div className="flex-1">
+        <Outlet />
+      </div>
+
+      <footer className="border-t border-[#DCDCD7] mt-20">
+        <div className="mx-auto max-w-3xl px-6 py-8 flex items-center justify-between text-xs text-[#73736E]">
+          <span>Gery Fabrega</span>
+          <div className="flex items-center gap-5">
+            <Link to="/blog" className="hover:text-[#141413] transition-colors">
+              Writing
+            </Link>
+            <a
+              href="https://github.com/geryfabrega"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-[#141413] transition-colors"
+            >
+              GitHub
+            </a>
           </div>
         </div>
-      </nav>
-      <Outlet />
+      </footer>
     </div>
   );
 }
@@ -103,11 +143,19 @@ export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   }
 
   return (
-    <main className="pt-16 p-4 container mx-auto">
-      <h1>{message}</h1>
-      <p>{details}</p>
+    <main className="mx-auto max-w-3xl px-6 py-20">
+      <h1 className="font-serif text-4xl font-medium text-[#181715] mb-3">
+        {message}
+      </h1>
+      <p className="text-[#57534E] mb-6">{details}</p>
+      <Link
+        to="/"
+        className="text-sm text-[#181715] underline underline-offset-4 decoration-[#C8C2B6] hover:decoration-[#181715]"
+      >
+        ← Return home
+      </Link>
       {stack && (
-        <pre className="w-full p-4 overflow-x-auto">
+        <pre className="mt-8 w-full p-4 overflow-x-auto bg-[#F2EFE9] border border-[#E5E1D8] rounded text-xs font-mono text-[#181715]">
           <code>{stack}</code>
         </pre>
       )}

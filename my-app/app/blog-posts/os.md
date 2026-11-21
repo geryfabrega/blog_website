@@ -4,8 +4,6 @@ date: "2025-11-19"
 excerpt: "The Start of a very long divine comedy..."
 ---
 
-![A Well Scripted Live Divine Comedy](/blog-images/journey.png)
-
 # Why Build an Operating System?
 
 Recently I have started a deep dive journey to learn systems programming, this is a field I'll admit has been very imtimidating to get into, it has always appeared to me as a sign of excellence or a final frontier to conquer in the world of software engineering. I have always been employed within the *application layer*, making full stack web apps or some services to achieve some business need, which so far has been an excellent career. However I have found my self critically lacking in systems/ OS knowledge. To mitigate this I took the time to read *Operating Systems Three Easy Pieces* by *Remzi & Andrea Arpaci-Dusseau*. This was an excellent read however I was left with many questions on how OS concepts are implemented. How can we write C code to actually create virtual memory? What does a sys call look like when implemented from scratch? What better way than to build a very minimal OS!
